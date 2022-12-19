@@ -39,8 +39,9 @@ jobs:
         uses: docker/setup-buildx-action@v2.2.1
       - name: Build and Push
         uses: docker/build-push-action@v3.2.0
-        context: .
-        platforms: [linux/arm/v7]
-        push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        with:
+          context: .
+          platforms: linux/arm/v7
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
